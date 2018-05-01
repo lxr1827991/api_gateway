@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.9.0/js/md5.js"></script>
+<script src="js/app.js"></script>
+<script type="text/javascript">
+
+function test(){
+	
+	$app.request("lapp/getUser.do",function(data){
+		
+		console.log(data);
+		
+	},{param:{account:"lxr",pwd:"123456"}})
+	
+}
+
+function test2(){
+	
+	$app.request("user/test2.do",function(data){
+		
+		console.log(data);
+		
+	},{param:{account:"lxr",pwd:"123456"}})
+	
+}
+
+$.ajax({ 
+	type: "post", 
+	dataType:"json",
+	url: "/lapp/test.do?u=0&i=0", 
+	data:{k:90},	
+	beforeSend: function(XMLHttpRequest){ 
+	
+	}, 
+	success: function(data, status){
+		console.log(data)
+	}, 
+	complete: function(XMLHttpRequest, textStatus){ 
+	
+	}, 
+	error: function(){ 
+		
+	} 
+	}); 
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

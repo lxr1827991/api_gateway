@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"> 
+	<title>接口文档</title>
+	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div style="max-width: 1000px;margin: 0 auto;">
+
+<div class="panel panel-default" style="position:absolute;width:300px;left:20px;top:20px;overflow:scroll;bottom: 20px;">
+   <ul id="listGroup" class="list-group">
+   
+</ul>
+</div>
+
+<div  style="padding-left: 350px;padding-top: 20px;padding-right: 20px;padding-bottom: 20px;">
+
+					<div class="lxr-item">
+								<h3><a class="item-index" >1.1 接口说明</a></h3>
+								<h4>1. 交互形式</h4>
+								<div>数据采用http访问，返回json数据</div>
+								
+				</div>
+				   
+
+				<div class="lxr-item">
+								<h3><a class="item-index" >1.2 接口调用</a></h3>
+								<h4>1. 构造请求数据</h4>
+								<div> 请求方根据接口提供的接口规则，通过程序生成得到签名结果及要传输给接口的数据结合。</div>
+								<h4>2. 返回响应数据</h4>
+								<div> 接口会把处理完成的结果数据以 JSON 的形式返回给接口调用者，如果接口返回处理成功则此次对接成功，如果接口返回处理失败则此次对接失败</div>
+								<h4>3. 请求加密</h4>
+								<div> 所有后台接口均进行加密验证，接入方在调用任何接口时均需要对原始请求进行签名，
+										后台接口签名进行校验，如果签名不正确，则接口不允许被调用。
+									签名算法采用 MD5 计算，URL 请求中所有非空的参数值都要参与加密，参数加密的时
+									候要按照参数名首字母的 ascii 值升序排列，并在拼接的串末尾加上 reqKey，最后将整个串进行 MD5。<br>
+									(例如：account=admin&pwd=0791jr2018&sysAppid=ios&sysSid=43019925-d272-40f5-8597-584043b6f47&timestamp=1524732012816&reqKey=97a7577b766d)
+									
+									</div>
+								<h4>4. 框架错误提示</h4>
+								<div> <table class="table table-bordered">
+									<thead>
+										<tr>
+											<th>code</th>
+											<th>说明</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>0</td>
+											<td>业务处理失败</td>
+										</tr>
+										
+										<tr>
+											<td>1</td>
+											<td>业务处理成功</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>接口错误</td>
+										</tr>
+										<tr>
+											<td>4</td>
+											<td>接口调用流程错误</td>
+										</tr>
+										<tr>
+											<td>5</td>
+											<td>未登录或登录失效</td>
+										</tr>
+									</tbody>
+								</table></div>
+								
+								<h4>5. 接口基本字段</h4>
+								<div> <table class="table table-bordered">
+									<thead>
+										<tr>
+											<th>字段名</th>
+											<th>字段说明</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>sysAppid</td>
+											<th>应用id</th>
+										</tr>
+										
+										<tr>
+											<td>sysVersion</td>
+											<th>版本号</th>
+										</tr>
+										<tr>
+											<td>timestamp</td>
+											<th>时间戳</th>
+										</tr>
+										<tr>
+											<td>sysSid</td>
+											<th>会话id</th>
+										</tr>
+										<tr>
+											<td>sign</td>
+											<th>签名</th>
+										</tr>
+									</tbody>
+								</table></div>
+
+				
+				</div>
+				   
+
+<div class="lxr-item">
+								<h3><a class="item-index" >2.1 登录</a></h3>
+								<table class="table table-bordered">
+									<caption>请求参数</caption>
+									<thead>
+										<tr>
+											<th>参数名称</th>
+											<th>参数类型</th>
+											<th>参数说明</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>account</td>
+											<td>字符</td>
+											<td>账号</td>
+										</tr>
+										<tr>
+											<td>pwd</td>
+											<td>字符</td>
+											<td>密码</td>
+										</tr>
+										
+									</tbody>
+									<table class="table table-bordered">
+									<caption>返回</caption>
+									<thead>
+										<tr>
+											<th>参数名称</th>
+											<th>参数类型</th>
+											<th>参数说明</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>account</td>
+											<td>字符</td>
+											<td>账号</td>
+										</tr>
+										<tr>
+											<td>pwd</td>
+											<td>字符</td>
+											<td>密码</td>
+										</tr>
+										
+									</tbody>
+								</table>
+				</div>
+				   
+			
+				   
+</div>
+
+
+</div>
+</body>
+<script type="text/javascript">
+$(function(){
+	
+	$(".lxr-item .item-index").each(function(i,e){
+		$(e).attr("name","index_"+i);
+		
+		$("#listGroup").append(' <li class="list-group-item"><a href="#index_'+i+'">'+$(e).html()+'</a></li>')
+		
+	});
+	
+})
+
+
+</script>
+</html>

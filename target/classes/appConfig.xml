@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+<fileHost>http://m.hcparking.cn</fileHost>
+
+<app_key_web>97a7577b766d</app_key_web>
+<app_key_ios>97a7577b766d</app_key_ios>
+<app_key_android>97a7577b766d</app_key_android>
+</config>

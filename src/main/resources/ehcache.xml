@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../config/ehcache.xsd">
+    <diskStore path="java.io.tmpdir"/>
+    <!-- DefaultCache setting. -->
+    <defaultCache
+            maxElementsInMemory="100"
+            eternal="false"
+            timeToIdleSeconds="120"
+            timeToLiveSeconds="120"
+            maxElementsOnDisk="1000000"
+            overflowToDisk="true"
+            memoryStoreEvictionPolicy="LRU">
+    </defaultCache>
+    
+    
+               
+  <cache name="appSession"
+        maxElementsInMemory="200"
+        eternal="false"
+        timeToIdleSeconds="480"
+        timeToLiveSeconds="600"
+        overflowToDisk="true"/> 
+    
+    <cache name="appSessionForever"  
+    	maxElementsOnDisk="0"
+        maxElementsInMemory="2000"  
+        eternal="true" 
+        overflowToDisk="true"/>
+        
+     <cache name="appSessionAlias"  
+    	maxElementsOnDisk="0"
+        maxElementsInMemory="2000"  
+        eternal="true" 
+        overflowToDisk="true"/>     
+    
+
+</ehcache>
