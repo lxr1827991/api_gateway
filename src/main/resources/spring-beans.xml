@@ -19,7 +19,7 @@
 	
 	
 	
- <bean id="serviceManage" class="com.park.api.ServiceManage"  />
+ 	<bean id="serviceManage" class="com.park.api.ServiceManage"  />
  
   
    <bean id="appSessionManager" class="com.lxapp.appsession.AppSessionFactory" factory-method="createAppSessionManager">
