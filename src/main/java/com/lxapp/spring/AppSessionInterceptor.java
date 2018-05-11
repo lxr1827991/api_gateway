@@ -6,13 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.lxapp.AppContext;
 import com.lxapp.appsession.AppSession;
 import com.lxapp.appsession.AppSessionReception;
 import com.lxapp.appsession.utils.AppSessionUtils;
-import com.lxapp.utils.AppUtils;
-import com.lxapp.utils.CookieUtils;
-import com.park.api.GatewayUtils;
 
 public class AppSessionInterceptor extends HandlerInterceptorAdapter{
 
@@ -29,19 +25,22 @@ public class AppSessionInterceptor extends HandlerInterceptorAdapter{
 			throws Exception {
 		appSessionReception.requestStart();
 		appSessionReception.setSessionId(request.getParameter(sessionKey));
+		AppSession appSession = AppSessionUtils.getSession(false);
+		if(appSession!=null)AppSessionUtils.refSession(appSession);
 		return true;
 	}
 	
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		if(AppUtils.getAppInterface().getAppid().equals(AppContext.APP_WEB)) {
+		
+		/*if(AppUtils.getAppInterface().getAppid().equals(AppContext.APP_WEB)) {
 			AppSession appSession = AppSessionUtils.getSession(false);
 			if(appSession!=null)
 			CookieUtils.setCookie(response, sessionKey,appSession.getId(),10*60,"/");
 			else CookieUtils.delCookie(request, response, sessionKey);
 			
-		}
+		}*/
 		
 		appSessionReception.requestFinish();
 		super.postHandle(request, response, handler, modelAndView);

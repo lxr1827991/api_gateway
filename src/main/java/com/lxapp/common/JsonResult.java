@@ -11,9 +11,11 @@ public class JsonResult {
 		//接口调用流程错误
 		public static final int STATUS_CALL_ERROR = 4;
 		//未认证
-		public static final int STATUS_UN_AUTH = 5;
-		//未认证
-		public static final int STATUS_UN_SERVICE = 6;
+		public static final int STATUS_UN_LOGIN = 5;
+		//无权限
+		public static final int STATUS_UN_AUTH = 6;
+		//服务未找到
+		public static final int STATUS_UN_SERVICE = 7;
 		//参数不合法
 		public static final int STATUS_INVALID_PARAMETER= 100;
 		//通讯异常

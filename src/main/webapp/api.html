@@ -8,15 +8,15 @@
 	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div style="max-width: 1000px;margin: 0 auto;">
+<div style="max-width: 1400px;margin: 0 auto;padding-top: 20px;">
 
-<div class="panel panel-default" style="position:absolute;width:300px;left:20px;top:20px;overflow:scroll;bottom: 20px;">
+<div class="panel panel-default" style="width:300px;left:20px;top:20px;/* overflow:scroll; */bottom: 20px;float: left;">
    <ul id="listGroup" class="list-group">
    
 </ul>
 </div>
 
-<div  style="padding-left: 350px;padding-top: 20px;padding-right: 20px;padding-bottom: 20px;">
+<div  style="padding-left: 350px;padding-right: 20px;padding-bottom: 20px;">
 
 					<div class="lxr-item">
 								<h3><a class="item-index" >1.1 接口说明</a></h3>
@@ -70,10 +70,19 @@
 											<td>5</td>
 											<td>未登录或登录失效</td>
 										</tr>
+										<tr>
+											<td>6</td>
+											<td>无权限访问</td>
+										</tr>
+										<tr>
+											<td>7</td>
+											<td>服务未找到</td>
+										</tr>
+										
 									</tbody>
 								</table></div>
 								
-								<h4>5. 接口基本字段</h4>
+								<h4>5. 接口公告参数</h4>
 								<div> <table class="table table-bordered">
 									<thead>
 										<tr>
@@ -105,6 +114,52 @@
 										</tr>
 									</tbody>
 								</table></div>
+								
+								<h4>6. 接口返回</h4>
+								<div> 示例：{"code":1,"sid":"4dc9e4a8-257c-4a4d-8bf8-ce331de1408b","token":null,"msg":null,"data":null,"time":1525846011283}
+								
+								 <table class="table table-bordered">
+									<thead>
+										<tr>
+											<th>字段名</th>
+											<th>字段说明</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>code</td>
+											<th>业务状态码</th>
+										</tr>
+										
+										<tr>
+											<td>sid</td>
+											<th>会话id</th>
+										</tr>
+										<tr>
+											<td>token</td>
+											<th>口令（已废弃）</th>
+										</tr>
+										<tr>
+											<td>msg</td>
+											<th>业务结果描述</th>
+										</tr>
+										<tr>
+											<td>data</td>
+											<th>业务结果</th>
+										</tr>
+										<tr>
+											<td>time</td>
+											<th>服务器时间</th>
+										</tr>
+									</tbody>
+								</table></div>
+								
+								
+								<h4>7. 请求示例</h4>
+								<div> 
+								签名：sign = MD5(account=admin&pwd=0791jr2018&sysAppid=web&sysSid=e3185985-102d-4890-81bb-722db4600e63&sysVersion=1&timestamp=1525846004254)
+								<br>请求：接口根路径/login.do?account=admin&pwd=0791jr2018&sysAppid=web&sysSid=e3185985-102d-4890-81bb-722db4600e63&sysVersion=1&timestamp=1525846004254&sign=签名值
+								</div>
 
 				
 				</div>
@@ -112,53 +167,167 @@
 
 <div class="lxr-item">
 								<h3><a class="item-index" >2.1 登录</a></h3>
+								<h4>接口路径：authService/login.do</h4>
+								<h4>请求参数:</h4>
 								<table class="table table-bordered">
-									<caption>请求参数</caption>
 									<thead>
 										<tr>
 											<th>参数名称</th>
-											<th>参数类型</th>
+											<th>是否必填</th>
 											<th>参数说明</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
 											<td>account</td>
-											<td>字符</td>
+											<td>是</td>
 											<td>账号</td>
 										</tr>
 										<tr>
 											<td>pwd</td>
-											<td>字符</td>
+											<td>是</td>
 											<td>密码</td>
 										</tr>
-										
+										<tr>
+											<td colspan="3" >公共参数</td>
+										</tr>
 									</tbody>
+									</table>
+									<h4>返回:忽略</h4>
+									
+</div>
+
+
+<div class="lxr-item">
+								<h3><a class="item-index" >2.2 退出</a></h3>
+								<h4>接口路径：authService/login.do</h4>
+								<h4>请求参数:</h4>
+								<table class="table table-bordered">
+									<thead>
+										<tr>
+											<th>参数名称</th>
+											<th>是否必填</th>
+											<th>参数说明</th>
+										</tr>
+									</thead>
+									<tbody>
+										
+										<tr>
+											<td colspan="3" >公共参数</td>
+										</tr>
+									</tbody>
+									</table>
+									<h4>返回:</h4>
 									<table class="table table-bordered">
-									<caption>返回</caption>
 									<thead>
 										<tr>
 											<th>参数名称</th>
-											<th>参数类型</th>
+											<th>是否必填</th>
+											<th>参数说明</th>
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>
+									</table>
+									
+</div>
+
+
+
+<div class="lxr-item">
+								<h3><a class="item-index" >2.3 检查权限值</a></h3>
+								<h4>接口路径：authService/isPermitteds.do</h4>
+								<h4>请求参数:</h4>
+								<table class="table table-bordered">
+									<thead>
+										<tr>
+											<th>参数名称</th>
+											<th>是否必填</th>
 											<th>参数说明</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
-											<td>account</td>
-											<td>字符</td>
-											<td>账号</td>
+											<td>perms</td>
+											<td>是</td>
+											<td>权限字符,对于多个权限符用逗号隔开</td>
 										</tr>
 										<tr>
-											<td>pwd</td>
-											<td>字符</td>
-											<td>密码</td>
+											<td colspan="3" >公共参数</td>
+										</tr>
+									</tbody>
+									</table>
+									<h4>返回:</h4>
+									<table class="table table-bordered">
+									<thead>
+										<tr>
+											<th>参数名称</th>
+											<th>是否必填</th>
+											<th>参数说明</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>（权限数组）</td>
+											<td>是</td>
+											<td>对于有权限的返回，没有的返回</td>
+										</tr>
+									</tbody>
+									</table>
+									
+</div>	
+
+
+
+<div class="lxr-item">
+								<h3><a class="item-index" >2.4 文件上传</a></h3>
+								<h4>接口路径：fileService/upload.do</h4>
+								<h4>请求参数:</h4>
+								<table class="table table-bordered">
+									<thead>
+										<tr>
+											<th>参数名称</th>
+											<th>是否必填</th>
+											<th>参数说明</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>file</td>
+											<td>是</td>
+											<td>文件</td>
+										</tr>
+										<tr>
+											<td>url</td>
+											<td>是</td>
+											<td>接口路径</td>
+										</tr>
+										<tr>
+											<td>field</td>
+											<td>是</td>
+											<td>接口字段</td>
 										</tr>
 										
+										<tr>
+											<td colspan="3" >公共参数</td>
+										</tr>
 									</tbody>
-								</table>
-				</div>
-				   
+									</table>
+									<h4>返回:</h4>
+									<table class="table table-bordered">
+									<thead>
+										<tr>
+											<th>参数名称</th>
+											<th>是否必填</th>
+											<th>参数说明</th>
+										</tr>
+									</thead>
+									<tbody>
+										
+									</tbody>
+									</table>
+									
+</div>	   
 			
 				   
 </div>

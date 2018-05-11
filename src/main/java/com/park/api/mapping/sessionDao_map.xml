@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.park.api.dao.SessionDao">
+	
+	
+	
+	
+	<select id="getSession" resultType="string">
+		select json from app_session where id=#{id}
+	</select>
+	
+	
+	<insert id="save">
+	INSERT INTO app_session (id, alias, json,updatetime) VALUES (#{id}, #{alias}, #{json},#{time})
+	</insert>
+	
+	<update id="update">
+	UPDATE app_session SET alias=#{alias},json = #{json} WHERE id=#{id}
+	</update>
+	
+	
+	<delete id="delete">
+		delete from app_session where id=#{id}
+	</delete>
+	
+	<update id="refLife">
+	UPDATE app_session SET updatetime=#{time} WHERE id=#{id}
+	</update>
+	
+	<update id="setLife">
+	UPDATE app_session SET life=#{life} WHERE id=#{id}
+	</update>
+	
+	<select id="getByAlias" resultType="string">
+		select json from app_session where alias=#{alias}
+	</select>
+	
+	
+	<delete id="deleteOverdue">
+	delete from app_session  where life>0 AND ((#{time}-updatetime)/60000)>life
+	</delete>
+	
+</mapper>

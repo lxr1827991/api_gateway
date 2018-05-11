@@ -1,6 +1,9 @@
 package com.park.api.common;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -13,6 +16,11 @@ import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
+
+import com.alibaba.fastjson.JSONObject;
+import com.lxapp.common.AppInterface;
+import com.lxapp.utils.AppUtils;
+import com.park.api.bean.AuthUtils;
 
 public class RestTemplateUtils {
 
@@ -46,7 +54,7 @@ public class RestTemplateUtils {
 
 	}
 	
-	public static String post(String url,byte[] body,HttpServletRequest request){
+	public static String post(String url,byte[] body,HttpServletRequest request,String sysUid){
 	
 		
 		RestTemplate restTemplate = new RestTemplate();
@@ -54,29 +62,45 @@ public class RestTemplateUtils {
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Type", request.getContentType());
 		headers.add("Content-Length", request.getContentLength()+"");
-		headers.add("Accept", request.getHeader("Accept"));
-		headers.add("Accept-Encoding", request.getHeader("Accept-Encoding"));
-		headers.add("Accept-Language", request.getHeader("Accept-Language"));
-		headers.add("Connection", request.getHeader("Connection"));
-		headers.add("Host", request.getHeader("Host"));
-		headers.add("Origin", request.getHeader("Origin"));
-		headers.add("Referer", request.getHeader("Referer"));
-		headers.add("User-Agent", request.getHeader("User-Agent"));
+		
+		
 		headers.add("X-Requested-With", request.getHeader("X-Requested-With"));
-		//headers.add("Accept-Encoding", request.);
-		System.out.println(headers);
+		
+		AppInterface appInterface = AppUtils.getAppInterface();
+		
+		headers.add("sysUid" , sysUid);
+		headers.set("sysAppid", appInterface.getAppid());
+		headers.add("sysVersion",appInterface.getVersion());
+        if(AuthUtils.getPerms()!=null&&AuthUtils.getPerms().size()>0)
+        	headers.add("sysViews",joinList(AuthUtils.getPerms()));
+        //headers.add(HttpHeaders.COOKIE,JSONObject.toJSONString(interfaceMap));
+        
 
 		HttpEntity<byte[]> httpEntity = new HttpEntity(body, headers);
 		
 
 		
-		ResponseEntity<String> str = restTemplate.postForEntity(url, body,String.class);
+		ResponseEntity<String> str = restTemplate.postForEntity(url, httpEntity,String.class);
 	
 		return str.getBody();
 		
 		
 
 	}
+	
+	
+	private static String joinList(List<String> list) {
+		
+		String ret = "";
+		for (int i = 0; i < list.size(); i++) {
+			ret+=(list.get(i)+",");
+		}
+
+		return ret.substring(0,ret.length()-1);
+		
+		
+	}
+	
 	
 public static String get(String url,byte[] body){
 	

@@ -56,7 +56,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
        	   return true;
     	  
     	  response.setContentType("text/html;charset=UTF-8");
-          response.getWriter().print(JSONObject.toJSONString(JsonResult.getResult(JsonResult.STATUS_UN_AUTH,"无权限，请重新登录")));
+          response.getWriter().print(JSONObject.toJSONString(JsonResult.getResult(JsonResult.STATUS_UN_LOGIN,"无权限，请重新登录")));
           return false;
 	} catch (TransmittalException e) {
 		//处理并发多次请求重复登录

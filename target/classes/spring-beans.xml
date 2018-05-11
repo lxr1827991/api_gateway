@@ -23,11 +23,12 @@
  
   
    <bean id="appSessionManager" class="com.lxapp.appsession.AppSessionFactory" factory-method="createAppSessionManager">
-        <constructor-arg ><ref bean="appSessionReception"/></constructor-arg>           
+       <constructor-arg ><ref bean="appSessionReception"/></constructor-arg>
+       <constructor-arg ><ref bean="dbAppSessionDao"/></constructor-arg>  
+       <constructor-arg value="true"></constructor-arg>
     </bean>
+    
     
     <bean id="appSessionReception" class="com.lxapp.appsession.AppSessionReception" >          
     </bean>
-    
-
 </beans>

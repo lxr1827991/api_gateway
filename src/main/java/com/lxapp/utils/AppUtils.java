@@ -1,7 +1,5 @@
 package com.lxapp.utils;
 
-import com.lxapp.AppContext;
-import com.lxapp.appsession.AppSession;
 import com.lxapp.common.AppInterface;
 
 public class AppUtils {

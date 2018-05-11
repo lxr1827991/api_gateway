@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.lxapp.appsession.bean.AppClient;
 import com.lxr.commons.exception.ApplicationException;
-import com.park.api.dao.UserDao;
+import com.park.api.dao.AuthDao;
 import com.park.api.entity.User;
 import com.lxapp.SecurityService;
 
@@ -14,17 +14,19 @@ import com.lxapp.SecurityService;
 public class SecurityServiceImpl extends SecurityService{
 
 	@Autowired
-	UserDao userDao;
+	AuthDao authDao;
 
 	@Override
 	public AppClient checkUser(AppClient client) {
 		
-		User user = userDao.getByAccount(client.getAccount());
+		User user = authDao.getByAccount(client.getAccount());
 		
 		if(user==null)throw new ApplicationException("账号不存在");
 		
 		if(!user.getPwd().equals(DigestUtils.md5Hex(client.getPwd())))
 			throw new ApplicationException("密码错误");
+		
+		client.setId(user.getId());
 		
 		return client;
 	}
