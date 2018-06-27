@@ -28,14 +28,8 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/ezmorph-1.0.6.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/core-3.2.1.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/javase-3.2.1.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/lxr-commons.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/pay.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/json-lib-2.4-jdk15.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/alipay-sdk-java20171027120314.jar" sourcepath="src/main/webapp/WEB-INF/lib/alipay-sdk-java20171027120314-source.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/appsession.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/appsession.jar" sourcepath="/appsession"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
 		<attributes>

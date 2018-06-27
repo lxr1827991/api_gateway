@@ -14,25 +14,27 @@ public abstract class SecurityService {
 	public abstract AppClient checkUser(AppClient subject);
 	
 	public void login(AppClient client) {
-		AppSession session = AppSessionUtils.getSession();
+		/*AppSession session = AppSessionUtils.getSession();
 		session.setAppClient(client);
 		session.setAlias(client.getAccount());
 		if(AppContext.APP_WEB.equals(AppUtils.getAppInterface().getAppid()))
-			session.setForever();
+			session.setForever();*/
 		
 	}
 	
 	
 	public void logout(AppClient client){
-		AppSessionUtils.getSession().setAppClient(null);
+		/*AppSessionUtils.getSession().setAppClient(null);*/
 	}
 	
 	public boolean isLogin() {
-		return AppSessionUtils.getSession().getAppClient()!=null;
+		return false;
+		/*return AppSessionUtils.getSession().getAppClient()!=null;*/
 	}
 	
 	public AppClient getAppClient() {
-		return AppSessionUtils.getSession().getAppClient();
+		return null;
+		/*return AppSessionUtils.getSession().getAppClient();*/
 
 	}
 

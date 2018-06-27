@@ -28,20 +28,16 @@ public class AppSessionInterceptor extends HandlerInterceptorAdapter{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		appSessionReception.requestStart();
-		appSessionReception.setSessionId(request.getParameter(sessionKey));
+		String sid = request.getParameter(sessionKey);
+		if(sid!=null&&sid.trim().equals(""))sid = null;
+		appSessionReception.setSessionId(sid);
 		return true;
 	}
 	
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		if(AppUtils.getAppInterface().getAppid().equals(AppContext.APP_WEB)) {
-			AppSession appSession = AppSessionUtils.getSession(false);
-			if(appSession!=null)
-			CookieUtils.setCookie(response, sessionKey,appSession.getId(),10*60,"/");
-			else CookieUtils.delCookie(request, response, sessionKey);
-			
-		}
+		
 		
 		appSessionReception.requestFinish();
 		super.postHandle(request, response, handler, modelAndView);
